@@ -1,0 +1,28 @@
+{
+	"message": "成功",
+	"result": {
+		"total": "1",
+		"pageSize": 10,
+		"data": [{
+			"mgrErp": "jincai105",
+			"jdpayOrderNo": "120031528094902167",
+			"saleAfterStatus": "未进入售后",
+			"orderTime": "2018-06-03 14:50:21",
+			"settleStatus": "未结清",
+			"sumNrAmount": 1.00,
+			"payTime": "2018-06-03 14:50:21",
+			"orderStatus": "等待收货",
+			"invoiceStatus": "未开",
+			"toBillStatus": "已出账",
+			"orderNo": "1528094902168",
+			"payStatus": "已支付",
+			"orderAmount": 1.00,
+			"billNo": "20170508105101250",
+			"productName": "SMB",
+			"origOrderNo":"120031528094902167"
+		}],
+		"totalPage": 1,
+		"pageNum": 1
+	},
+	"code": "000"
+}

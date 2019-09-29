@@ -1,0 +1,40 @@
+{
+	"message": "成功",
+	"result": {
+		"data": [{
+			"periodNum": 1,
+			"sumNrPri": 0.00,
+			"periodNo": "201705111941354564158",
+			"sumNrInt": 0.00,
+			"status": "已结清",
+			"nrRepayAmount": 0.00,
+			"sumNrDefer": 0.00,
+			"sumNrDelin": 0.00,
+			"overdays": 0,
+			"repayDate": "2017-05-30 00:00:00"
+		}, {
+			"periodNum": 2,
+			"sumNrPri": 0.00,
+			"periodNo": "201705111941354575770",
+			"sumNrInt": 0.00,
+			"status": "已结清",
+			"nrRepayAmount": 0.00,
+			"sumNrDefer": 0.00,
+			"sumNrDelin": 0.00,
+			"overdays": 0,
+			"repayDate": "2017-06-30 00:00:00"
+		}, {
+			"periodNum": 3,
+			"sumNrPri": 0.00,
+			"periodNo": "201705111941354582344",
+			"sumNrInt": 0.00,
+			"status": "已结清",
+			"nrRepayAmount": 0.00,
+			"sumNrDefer": 0.00,
+			"sumNrDelin": 0.00,
+			"overdays": 0,
+			"repayDate": "2017-07-30 00:00:00"
+		}]
+	},
+	"code": "000"
+}

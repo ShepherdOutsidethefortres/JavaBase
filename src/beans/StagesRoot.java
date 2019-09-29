@@ -1,18 +1,8 @@
-/**
- * Copyright 2019 bejson.com
- */
 package beans;
 
-/**
- * Auto-generated: 2019-09-26 14:25:30
- *
- * @author bejson.com (i@bejson.com)
- * @website http://www.bejson.com/java2pojo/
- */
-public class LendingList {
-
+public class StagesRoot {
     private String message;
-    private LendingRet result;
+    private StagesRet result;
     private String code;
 
     public void setMessage(String message) {
@@ -23,11 +13,11 @@ public class LendingList {
         return message;
     }
 
-    public void setResult(LendingRet result) {
+    public void setResult(StagesRet result) {
         this.result = result;
     }
 
-    public LendingRet getResult() {
+    public StagesRet getResult() {
         return result;
     }
 

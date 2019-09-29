@@ -1,18 +1,8 @@
-/**
- * Copyright 2019 bejson.com
- */
 package beans;
 
-/**
- * Auto-generated: 2019-09-26 13:57:18
- *
- * @author bejson.com (i@bejson.com)
- * @website http://www.bejson.com/java2pojo/
- */
-public class OverdueLoan {
-
+public class ReleatedBillsRoot {
     private String message;
-    private OverdueLoanRet result;
+    private ReleatedBillsRet result;
     private String code;
     public void setMessage(String message) {
         this.message = message;
@@ -21,10 +11,10 @@ public class OverdueLoan {
         return message;
     }
 
-    public void setResult(OverdueLoanRet overdueLoanRet) {
-        this.result = overdueLoanRet;
+    public void setResult(ReleatedBillsRet result) {
+        this.result = result;
     }
-    public OverdueLoanRet getResult() {
+    public ReleatedBillsRet getResult() {
         return result;
     }
 
@@ -34,5 +24,4 @@ public class OverdueLoan {
     public String getCode() {
         return code;
     }
-
 }
