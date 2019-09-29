@@ -1,0 +1,98 @@
+{
+	"message": "成功",
+	"result": {
+		"total": 142,
+		"data": [{
+			"amount": "100.00",
+			"cancelStatus": "0",
+			"loanId": "66601101190924194851985569870",
+			"loanTerm": "2019-09-24 00:00:00-2019-11-24 00:00:00",
+			"repayMode": "4",
+			"settleStatus": "0",
+			"stage": "2",
+			"startDate": "2019-09-24 00:00:00"
+		}, {
+			"amount": "100.00",
+			"cancelStatus": "0",
+			"loanId": "66601100190924194946479924365",
+			"loanTerm": "2019-09-24 00:00:00-2020-09-24 00:00:00",
+			"repayMode": "2",
+			"settleStatus": "0",
+			"stage": "2",
+			"startDate": "2019-09-24 00:00:00"
+		}, {
+			"amount": "100.00",
+			"cancelStatus": "0",
+			"loanId": "66601006190924195256604751467",
+			"loanTerm": "2019-09-24 00:00:00-2019-11-24 00:00:00",
+			"repayMode": "1",
+			"settleStatus": "0",
+			"stage": "2",
+			"startDate": "2019-09-24 00:00:00"
+		}, {
+			"amount": "100.00",
+			"cancelStatus": "0",
+			"loanId": "66601100190910152940884111885",
+			"loanTerm": "2019-09-10 00:00:00-2019-10-10 00:00:00",
+			"repayMode": "4",
+			"settleStatus": "0",
+			"stage": "2",
+			"startDate": "2019-09-10 00:00:00"
+		}, {
+			"amount": "100.00",
+			"cancelStatus": "0",
+			"loanId": "66601002190903180411083458569",
+			"loanTerm": "2019-09-03 00:00:00-2019-10-03 00:00:00",
+			"repayMode": "4",
+			"settleStatus": "0",
+			"stage": "2",
+			"startDate": "2019-09-03 00:00:00"
+		}, {
+			"amount": "101.00",
+			"cancelStatus": "0",
+			"loanId": "66601101190902114055454300484",
+			"loanTerm": "2019-09-02 00:00:00-2019-11-02 00:00:00",
+			"repayMode": "4",
+			"settleStatus": "1",
+			"stage": "2",
+			"startDate": "2019-09-02 00:00:00"
+		}, {
+			"amount": "102.00",
+			"cancelStatus": "0",
+			"loanId": "66601102190902114827148109794",
+			"loanTerm": "2019-09-02 00:00:00-2019-10-02 00:00:00",
+			"repayMode": "4",
+			"settleStatus": "0",
+			"stage": "2",
+			"startDate": "2019-09-02 00:00:00"
+		}, {
+			"amount": "102.00",
+			"cancelStatus": "0",
+			"loanId": "66601102190902135439260283297",
+			"loanTerm": "2019-09-02 00:00:00-2019-10-02 00:00:00",
+			"repayMode": "4",
+			"settleStatus": "0",
+			"stage": "2",
+			"startDate": "2019-09-02 00:00:00"
+		}, {
+			"amount": "109.00",
+			"cancelStatus": "0",
+			"loanId": "66601002190902153037484349812",
+			"loanTerm": "2019-09-02 00:00:00-2019-10-02 00:00:00",
+			"repayMode": "4",
+			"settleStatus": "0",
+			"stage": "2",
+			"startDate": "2019-09-02 00:00:00"
+		}, {
+			"amount": "100.00",
+			"cancelStatus": "0",
+			"loanId": "66601002190902163612504547735",
+			"loanTerm": "2019-09-02 00:00:00-2019-10-02 00:00:00",
+			"repayMode": "4",
+			"settleStatus": "1",
+			"stage": "2",
+			"startDate": "2019-09-02 00:00:00"
+		}]
+	},
+	"code": "000"
+}

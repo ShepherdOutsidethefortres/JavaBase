@@ -1,0 +1,80 @@
+{
+	"message": "成功",
+	"result": {
+		"total": 8,
+		"data": [{
+			"finishTime": "2019-04-22 00:00:00",
+			"loanId": "66601100190320203842172426989",
+			"ovdAmount": "0.00",
+			"ovdCoi": "0.00",
+			"ovdCop": "0.00",
+			"ovdNumber": "1",
+			"ovdStartDate": "2019-04-21 00:00:00",
+			"ovdpenalty": "0.00"
+		}, {
+			"finishTime": "2019-08-08 00:00:00",
+			"loanId": "66601101190808150039482997310",
+			"ovdAmount": "0.00",
+			"ovdCoi": "0.00",
+			"ovdCop": "0.00",
+			"ovdNumber": "1",
+			"ovdStartDate": "2019-08-07 00:00:00",
+			"ovdpenalty": "0.00"
+		}, {
+			"finishTime": "2019-08-12 00:00:00",
+			"loanId": "66601101190812194331371359276",
+			"ovdAmount": "0.00",
+			"ovdCoi": "0.00",
+			"ovdCop": "0.00",
+			"ovdNumber": "1",
+			"ovdStartDate": "2019-08-12 00:00:00",
+			"ovdpenalty": "0.00"
+		}, {
+			"finishTime": "2019-09-02 00:00:00",
+			"loanId": "66601100190902144422868278123",
+			"ovdAmount": "0.00",
+			"ovdCoi": "0.00",
+			"ovdCop": "0.00",
+			"ovdNumber": "1",
+			"ovdStartDate": "2019-08-02 00:00:00",
+			"ovdpenalty": "0.00"
+		}, {
+			"finishTime": "2019-09-16 00:00:00",
+			"loanId": "66601102190916175936531732233",
+			"ovdAmount": "0.00",
+			"ovdCoi": "0.00",
+			"ovdCop": "0.00",
+			"ovdNumber": "1",
+			"ovdStartDate": "2019-08-18 00:00:00",
+			"ovdpenalty": "0.00"
+		}, {
+			"finishTime": "2019-09-02 00:00:00",
+			"loanId": "66601100190902144422868278123",
+			"ovdAmount": "0.00",
+			"ovdCoi": "0.00",
+			"ovdCop": "0.00",
+			"ovdNumber": "2",
+			"ovdStartDate": "2019-09-02 00:00:00",
+			"ovdpenalty": "0.00"
+		}, {
+			"finishTime": "2019-09-16 00:00:00",
+			"loanId": "66601102190916175153317490362",
+			"ovdAmount": "0.00",
+			"ovdCoi": "0.00",
+			"ovdCop": "0.00",
+			"ovdNumber": "1",
+			"ovdStartDate": "2019-09-02 00:00:00",
+			"ovdpenalty": "0.00"
+		}, {
+			"finishTime": "2019-09-16 00:00:00",
+			"loanId": "66601102190916174347779405139",
+			"ovdAmount": "0.00",
+			"ovdCoi": "0.00",
+			"ovdCop": "0.00",
+			"ovdNumber": "1",
+			"ovdStartDate": "2019-09-15 00:00:00",
+			"ovdpenalty": "0.00"
+		}]
+	},
+	"code": "000"
+}
