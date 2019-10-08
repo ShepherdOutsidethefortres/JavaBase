@@ -169,7 +169,9 @@ public class MockDemo extends Mockito {
     public void testModifyThirdSource() {
         String name = "mrzhao";
         ThirdClassChild child = new ThirdClassChild(name);
-        when(child.soutName()).thenReturn("这是mock数据");
+
+        ThirdClass mock = mock(ThirdClass.class);
+        when(mock.soutName()).thenReturn("这是mock数据");
     }
 
     /**
