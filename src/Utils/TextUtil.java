@@ -4,6 +4,11 @@ import java.io.*;
 
 public class TextUtil {
 
+    /**
+     * 工具类 期望不可以被实例化
+     */
+    private TextUtil(){}
+
     private static String readString2(String filename) {
 
         StringBuffer str = new StringBuffer("");
