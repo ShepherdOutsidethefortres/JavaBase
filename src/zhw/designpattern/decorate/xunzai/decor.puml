@@ -1,0 +1,49 @@
+@startuml
+abstract class SchoolReport{
++{abstract}report():void
++{abstract}sign():void
+}
+
+class FouthGradeSchoolReport{
++report():void
++sign():void
+}
+
+class Father{
++{static}main(String[]):void
+}
+
+abstract class Decorator{
+-sr:SchoolReport
++Decorator(SchoolReport)
++report():void
++sign(String):void
+}
+
+class HighScoreDecorator{
++HighScoreDecorator(SchoolReport)
+-reportHighScore():void
++report():void
+}
+
+class SortDecorator{
++SortDecorator(SchoolReport)
+-reportSort():void
++report():void
+}
+
+note left of Father
+父亲类
+end note
+
+SchoolReport <|-- FouthGradeSchoolReport
+SchoolReport <|-- Decorator
+Decorator <|-- HighScoreDecorator
+Decorator <|-- SortDecorator
+
+Decorator -[hidden]-> FouthGradeSchoolReport
+Decorator o-left- FouthGradeSchoolReport
+HighScoreDecorator <.. Father
+SortDecorator <.. Father
+
+@enduml

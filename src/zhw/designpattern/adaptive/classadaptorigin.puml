@@ -1,0 +1,31 @@
+@startuml
+interface IUserInfo{
++getUserName():String
++getHomeAddress():String
++getMobileNumber():String
++getOfficeTelNumber():String
++getJobPosition():String
++getHomeTelNumber():String
+}
+
+class UserInfo{
++getUserName():String
++getHomeAddress():String
++getMobileNumber():String
++getOfficeTelNumber():String
++getJobPosition():String
++getHomeTelNumber():String
+}
+
+Class Client{
++{static}main(String[]) : void
+}
+
+left to right direction
+UserInfo ..|> IUserInfo
+IUserInfo -[hidden]> Client
+IUserInfo <.. Client
+
+
+
+@enduml

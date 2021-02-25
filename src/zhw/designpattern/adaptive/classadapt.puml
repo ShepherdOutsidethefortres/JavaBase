@@ -1,0 +1,59 @@
+@startuml
+interface IUserInfo{
++getUserName():String
++getHomeAddress():String
++getMobileNumber():String
++getOfficeTelNumber():String
++getJobPosition():String
++getHomeTelNumber():String
+}
+
+class UserInfo{
++getUserName():String
++getHomeAddress():String
++getMobileNumber():String
++getOfficeTelNumber():String
++getJobPosition():String
++getHomeTelNumber():String
+}
+
+UserInfo ..|> IUserInfo
+
+
+Class Client{
++{static}main(String[]) : void
+}
+
+interface IOuterUser{
++getUserBaseInfo():Map
++getUserOfficeInfo():Map
++getUserHomeInfo():Map
+}
+
+class OuterUser{
++getUserBaseInfo():Map
++getUserOfficeInfo():Map
++getUserHomeInfo():Map
+}
+
+IOuterUser <|.. OuterUser
+
+class OuterUserInfo{
+-Map baseInfo = super.getUserBaseInfo();
+-Map homeInfo = super.getUserHomeInfo();
+-Map officeInfo = super.getUserOfficeInfo();
++getHomeAddress():String
++getHomeTelNumber():String
++getJobPosition():String
++getMobileNumber():String
++getOfficeTelNumber():String
++getUserName():String
+}
+
+OuterUser <|-- OuterUserInfo
+IUserInfo <|..OuterUserInfo
+
+IUserInfo <.. Client
+OuterUserInfo <.. Client
+
+@enduml

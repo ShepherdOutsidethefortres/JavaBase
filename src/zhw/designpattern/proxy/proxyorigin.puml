@@ -1,0 +1,31 @@
+@startuml
+
+interface KindWomen{
++makeEyesWithMan():void
++happyWithMan():void
+}
+
+class PanJinLian{
++makeEyesWithMan():void
++happyWithMan():void
+}
+
+class WangPo{
+-kindWomen:KindWomen
++WangPo()
++WangPo(KindWomen)
++makeEyesWithMan():void
++happyWithMan():void
+}
+
+class XiMenQing{
++{static}main(String[]):void
+}
+
+KindWomen <|.. PanJinLian
+KindWomen <|.. WangPo
+WangPo o-- PanJinLian
+
+WangPo <.. XiMenQing
+
+@enduml

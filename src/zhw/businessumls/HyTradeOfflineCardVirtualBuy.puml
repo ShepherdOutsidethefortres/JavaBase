@@ -1,0 +1,66 @@
+@startuml
+start
+skinparam ConditionEndStyle hline
+:购买虚拟卡是否自动选中默认false;
+if (交易配置中心有配置) then (yes)
+:以交易配置中心配置为准;
+else (no)
+endif
+:获取推荐购卡模块;
+:交易配置中心获取是否可购买虚拟卡;
+if (可购买) then (yes)
+:构建推荐卡系统请求参数;
+:请求推荐卡系统;
+note left
+接口：CardRecommendClientService
+方法：recommendCard
+end note
+if (请求成功) then (yes)
+:返回请求推荐卡模块;
+:获取推荐卡配置及用户购买的卡入参;
+if (可购买) then (yes)
+:progressData获取小程序不能购卡的卡类型;
+if (小程序单 && 可购买) then (yes)
+:获取推荐卡面额及售价信息;
+if (面额、售价信息不为null) then (yes)
+:设置推荐卡模块的选中状态及结算支付方式;
+:progressData获取是否校验授权信息配置;
+skinparam ConditionEndStyle hline
+if (需要校验授权) then (yes)
+:前置模块数据校验;
+:构建授权信息请求参数;
+:查询授权信息;
+note left
+接口：PayGateWayAccountFacade
+方法：queryCardAuthorizedByVendor
+end note
+if (授权成功) then (yes)
+:设置前端推荐卡模块显示内容;
+else (no)
+:HyTradeException;
+stop
+endif
+else (no)
+endif
+:返回购卡模块结果;
+stop
+else (no)
+:HyTradeException;
+stop
+endif
+else (no)
+:return null;
+stop
+endif
+else (no)
+:return null;
+stop
+endif
+else (no)
+:HyTradeException;
+stop
+endif
+else (no)
+:return null;
+stop
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+title:HyTradeDiscountDmBaseComponent
+(*)  --> "获取智能购整单折扣开关信息"
+If "开关 open \n 订单金额>0" then
+--> [Yes] "构建智能购整单折扣请求参数"
+--> "开始获取智能购整单折扣信息"
+note left
+接口：DiscountDubboService
+方法：queryDiscount
+end note
+If "折扣信息获取成功" then
+--> [Yes] "开始分摊智能购折扣"
+--> "商品按照促销后价格排序"
+--> "重新计算商品总价"
+--> "计算每个商品的分摊信息，写入商品行"
+--> "打印日志，return"
+-->(*)
+else
+-left-> [No] "HyTradeException"
+Endif
+else
+--> [No] "打印日志，return"
+Endif
+@enduml

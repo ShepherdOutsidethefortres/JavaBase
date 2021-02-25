@@ -1,0 +1,33 @@
+@startuml
+title:不同手机、品牌，实现与抽象分离
+
+abstract class Phone{
+-brand:Brand
+}
+
+interface Brand{
++open():void
++close():void
++call():void
+}
+
+class Vivo{}
+
+class Xiaomi{}
+
+class FoldedPhone{}
+
+class UpRightPhone{}
+
+class Client{}
+
+
+Client ..> Phone
+Client ..> Brand
+Phone <|-- FoldedPhone
+Phone <|-- UpRightPhone
+Brand <|.. Vivo
+Brand <|.. Xiaomi
+Phone o.right. Brand
+
+@enduml

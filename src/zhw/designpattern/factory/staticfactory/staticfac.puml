@@ -1,0 +1,43 @@
+@startuml
+
+interface Human{
++laugh() : void
++cry() : void
++talk() : void
+}
+
+class YellowHuman {
++laugh() : void
++cry() : void
++talk() : void
+}
+
+class WhiteHuman {
++laugh() : void
++cry() : void
++talk() : void
+}
+
+class BlackHuman {
++laugh() : void
++cry() : void
++talk() : void
+}
+
+class HumanFactory{
++createHuman() : Human
+}
+
+class NvWa{
++main() : void
+}
+
+Human <|.. YellowHuman
+Human <|.. WhiteHuman
+Human <|.. BlackHuman
+
+HumanFactory ..> Human
+NvWa ..> HumanFactory
+
+
+@enduml

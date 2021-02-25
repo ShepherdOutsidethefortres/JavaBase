@@ -1,0 +1,81 @@
+@startuml
+title:HyTradeVenderStoreBaseComponent
+(*)  --> "基本参数校验"
+--> "<color:red><b>1.开始获取商家门店信息</b></color>"
+If "入参storeId is null or length==0" then
+--> [Yes] "HyTradeException：10002【参数为空】"
+else
+--> "开始查询OOP"
+note right
+接口：StoreInfoServiceForCache
+方法：queryStoreAndVenderBaseInfoByStoreId
+end note
+--> "获得查询结果ICRemoteResult"
+If "ICRemoteResult is not null && code == 10000" then
+--> [Yes] "返回商家门店信息"
+--> "<color:red><b>2.开始获取门店配置</b></color>"
+If "入参storeId is null or length==0" then
+--> [Yes] " HyTradeException：10002【参数为空】"
+else
+--> "开始查询OOP "
+note right
+接口:StoreInfoServiceForCache
+方法：queryStoreAllInfoById
+end note
+If "ICRemoteResult is not null && code == 10000" then
+--> [Yes] " 返回门店配置信息"
+If "步骤1获取的信息不为null && \n venderBaseInfo 不为null" then
+--> [Yes] "<color:red><b>3.开始获取商家配置</b></color>"
+If "步骤1中的venderId is null \n or length==0" then
+--> [Yes] " HyTradeException：\n10002【参数为空】 "
+else
+--> "开始查询OOP  "
+note right
+接口：VenderInfoServiceForCache
+方法：queryVenderAllInfoById
+end note
+If "ICRemoteResult is not null \n && code == 10000" then
+--> [Yes] " 返回商家配置信息"
+--> "商家、门店信息转换写\n入结算对象tradeInfo" as collect
+else
+--> "HyTradeException：\n【OOP错误码】【OOP错误信息】 "
+Endif
+Endif
+else
+Endif
+--> collect
+--> "<color:red><b>4.团购门店验证</b></color>"
+If "结算系统配置了\n校验团购门店" then
+--> [Yes] "构建团购系统请求参数"
+--> "开始获取团购门店信息【hy_store.log】"
+note right
+接口：CustomerServiceStoreClientApi
+方法：getDefaultCustomerServiceStoreList
+end note
+If "ResponseResult is null" then
+--> [Yes] "dubbo接口返回null"
+else
+If "ResponseResult.code!=0000" then
+--> [Yes] "HyTradeException:0007 \n【团购系统返回的错误】"
+else
+If "ResponseResult.getData() is null or empty" then
+--> [Yes] "HyTradeException:0008 \n 【您好，团购合作门店发生调整，您可退出团购页面重新加购】"
+else
+--> "得到团购门店信息"
+--> "对团购门店信息进行校验"
+--> "打印日志【hy_store.log】" as printlog
+Endif
+Endif
+Endif
+else
+Endif
+--> printlog
+-->(*)
+else
+--> " HyTradeException：【OOP错误码】【OOP错误信息】"
+Endif
+Endif
+else
+--> "HyTradeException：【OOP错误码】【OOP错误信息】"
+Endif
+@enduml

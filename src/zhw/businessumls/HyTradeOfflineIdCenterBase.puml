@@ -1,0 +1,24 @@
+@startuml
+title:HyTradeIdcenterBaseComponent
+(*)  --> "progeress获取是否在请求结算流程生成订单ID配置"
+If "true" then
+--> [Yes] "在info流程生成订单id"
+--> "获取用户id后两位"
+--> "请求idcenter获取订单号"
+note right
+接口:IdGeneratorForDubbo
+方法:get
+end note
+--> "idcenter获取订单后拼接用户id后两位后返回"
+--> "塞入tradeInfo.coredata"
+--> "progeress获取是否在请求结算流程中设置促销回滚标识" as promotion
+If "true" then
+-left-> [Yes] "设置促销回滚标识"
+else
+-->(*)
+EndIf
+-->(*)
+else
+-->promotion
+EndIf
+@enduml

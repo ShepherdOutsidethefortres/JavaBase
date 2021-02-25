@@ -1,0 +1,40 @@
+@startuml
+
+class AdvTemplate{
+-advSubject:String
+-advContext:String
++getAdvSubject():String
++getAdvContext():String
+}
+
+class Mail{
+-receiver:String
+-subject:String
+-appellation:String
+-contxt:String
+-tail:String
++Mail(AdvTemplate)
++getReceiver():String
++setReceiver(String):void
++getSubject():String
++setSubject(String):void
++getAppellation():String
++setAppellation(String):void
++getContxt():String
++setContxt(String):void
++getTail():String
++setTail(String):void
+}
+
+class Client{
+-{static}MAX_COUNT:int
++{static}main(String[]):void
+}
+
+AdvTemplate ..o Mail
+Client ..> AdvTemplate
+Client ..> Mail
+
+
+
+@enduml

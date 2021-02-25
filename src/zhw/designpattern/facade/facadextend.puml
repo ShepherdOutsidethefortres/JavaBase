@@ -1,0 +1,51 @@
+@startuml
+interface LetterProcess{
++writeContext(String):void
++fillEnvelope(String):void
++letterInotoEnvelope():void
++sendLetter():void
+}
+
+class LetterProcessImpl{
++writeContext(String):void
++fillEnvelope(String):void
++letterInotoEnvelope():void
++sendLetter():void
+}
+
+class Police{
++checkLetter(LetterProcess):void
+}
+
+class ModenPostOffice{
+-letterProcess:LetterProcess
+-letterPolice:Police
++sendLetter(String,String):void
+}
+
+class Client{
++{static}main(String[]):void
+}
+
+LetterProcess <|.. LetterProcessImpl
+LetterProcessImpl ..* ModenPostOffice
+ModenPostOffice <.. Client
+Police ..* ModenPostOffice
+
+note right of LetterProcess
+写信的过程
+end note
+
+note right of LetterProcessImpl
+写信的实现类
+end note
+
+note left of Police
+警察局检查信件
+end note
+
+note left of ModenPostOffice
+邮局（门面）
+end note
+
+@enduml

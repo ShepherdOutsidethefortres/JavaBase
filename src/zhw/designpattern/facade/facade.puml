@@ -1,0 +1,29 @@
+@startuml
+interface LetterProcess{
++writeContext(String):void
++fillEnvelope(String):void
++letterInotoEnvelope():void
++sendLetter():void
+}
+
+class LetterProcessImpl{
++writeContext(String):void
++fillEnvelope(String):void
++letterInotoEnvelope():void
++sendLetter():void
+}
+
+class ModenPostOffice{
+-letterProcess:LetterProcess
++sendLetter(String,String):void
+}
+
+class Client{
++{static}main(String[]):void
+}
+
+LetterProcess <|.. LetterProcessImpl
+LetterProcessImpl ..* ModenPostOffice
+ModenPostOffice <.. Client
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+interface Strategy{
++strategyMethod():void
+}
+
+class ConcreteStrategyA{
+}
+class ConcreteStrategyB{
+}
+
+Strategy <|.. ConcreteStrategyA
+Strategy <|.. ConcreteStrategyB
+
+class Context{
+-strategy:Strategy
++setStrategy(Strategy strategy):void
++getStrategy():Strategy
++StrategyMethod():voidi
+}
+
+Strategy -left-o Context
+@enduml

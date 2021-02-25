@@ -1,0 +1,23 @@
+@startuml
+title : HyTradeMemberBaseComponent
+(*)  --> "基本参数校验"
+--> "开始获取会员信息"
+If "传入的userId is null or length==0" then
+--> [Yes] "业务异常：10002【参数为空】"
+else
+--> "构建会员系统请求参数"
+--> "开始查询会员系统"
+note right
+接口：MemberInfoService
+方法：getUserInfo
+end note
+--> "获得查询结果UserBaseInfoVO"
+Endif
+
+If "UserBaseInfoVO is null" then
+--> [Yes] "业务异常:0001【会员信息异常，请重新登录会员后结账】"
+else
+--> "封装写入结算response"
+Endif
+-->(*)
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+abstract class CarModel{
+-sequence:ArrayList<String>
+#{abstract}start():void
+#{abstract}stop():void
+#{abstract}alarm():void
+#{abstract}engineBoom():void
++run():void
++setSequence(ArrayList<String>):void
+}
+
+class BenzModel{
+#start():void
+#stop():void
+#alarm():void
+#engineBoom():void
+}
+
+class BMWModel{
+#start():void
+#stop():void
+#alarm():void
+#engineBoom():void
+}
+
+CarModel <|-- BenzModel
+CarModel <|-- BMWModel
+
+class Client{
++{static}main(String[]):void
+}
+
+BenzModel<..Client
+@enduml

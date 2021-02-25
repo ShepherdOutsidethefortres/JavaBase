@@ -1,0 +1,101 @@
+@startuml
+title:HyTradeConfigCenterFreegoComponent
+(*)  --> "构建智能购配置中心请求参数"
+--> "基本参数校验"
+--> "<color:red><b>1.开始获取智能购配置" as step1
+note right
+接口:FreegoConfigRemoteClient
+方法:configAllMap
+end note
+If "result != null && result.code==0000" then
+--> [Yes] "得到智能购配置结果resulg.data"
+If "result.data != null" then
+--> [Yes] "开始从中获取配置信息"
+--> "获取订单数量配置"
+--> "获取日结时间配置"
+--> "智能购整单换购开关配置"
+--> "优先支付方式配置"
+--> "虚拟资产使用配置"
+--> "<color:red><b>2.progeressData获取是否需要截单时间配置"
+If "true" then
+--> [Yes] "处理截单时间"
+--> "<color:red><b>3.progeressData获取是否检验营业时间配置" as serviceTime
+If "isSubmit true && 校验营业时间true" then
+--> [Yes] "验证门店营业时间"
+If "不在门店营业时间内" then
+--> [Yes] "HyTradeException \n 不在营业时间内,无法自主收银"
+else
+--> "<color:red><b>4.progeressData获取是否校验下单数" as orderCount
+If "true" then
+--> [Yes] "获取特殊用户id配置"
+If "userId 在特殊用户id范围内" then
+--> [Yes] "<color:red><b>5.progeressData获取检验是否为用户重复提交" as orderDuplicate
+If "非submit流程 && 需要校验重复提交" then
+--> [Yes] "开始校验是否重复提交"
+--> "组装参数,获取用户下单信息"
+note right
+接口:OrderApiRemoteService
+方法:countSpecialOrder
+end note
+--> "复用校验下单数的接口判断流程"
+--> "得到重复下单请求的返回结果"
+--> "判断是否有重复单"
+If "有重复单" then
+--> [Yes] "HyTradeException \n 0101 订单已提交,请在订单中完成支付"
+else
+--> [No] (*)
+Endif
+else
+Endif
+--> [No] (*)
+else
+--> "下单数默认限制3"
+--> "获取智能购下单数配置"
+--> "比对,重设可下单数值"
+--> "组装参数,获取用户已下单数量"
+note right
+接口:OrderApiRemoteService
+方法:countSpecialOrder
+end note
+If "dubbo返回result null" then
+-left-> [Yes] "HyTradeException \n Dubbo null"
+else
+If "result.code != 0000" then
+-left-> [Yes] "HyTradeException \n 外部接口错误码/错误信息"
+else
+If "result.data ==null" then
+-left-> [Yes] "HyTradeException \n Dubbo null err"
+else
+--> "获取result.data.totalCount"
+If "totalCount==null \n || totalCount < 0" then
+-left-> [Yes] " HyTradeException \n Dubbo null err"
+else
+--> "得到用户已下单数"
+--> "判断用户是否还能继续下单"
+If "totalCount+1 \n > 可下单数" then
+-left-> [Yes] "HyTradeException \n 0001 智能设备订单数超过限制"
+else
+--> orderDuplicate
+Endif
+Endif
+Endif
+Endif
+Endif
+Endif
+else
+Endif
+--> orderDuplicate
+Endif
+else
+--> orderCount
+Endif
+else
+--> serviceTime
+Endif
+else
+--> "return"
+Endif
+else
+--> "HyTradeException:外部接口错误码/错误信息"
+Endif
+@enduml

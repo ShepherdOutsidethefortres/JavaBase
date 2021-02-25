@@ -1,0 +1,54 @@
+@startuml
+interface HyTradeOfflineClient{
++fetchInfo(HyTradeInfoReq):HyTradeResult<HyTradeInfoVO>
++submitOrder(HyTradeSubmitReq):HyTradeResult<HyTradeSubmitVO>
++pushOrder(HyTradeSubmitReq):HyTradeResult<HyTradeSubmitVO>
++renderInfo(HyTradeInfoReq):HyTradeResult<HyTradeRenderVO>
+}
+
+class HyTradeClientImpl{
+-hyTradeInfoService:HyTradeInfoService
+-hyTradeRenderService:HyTradeRenderService
+-hyTradeSubmitService:HyTradeSubmitService
+-hyPromotionRPCService:HyPromotionRPCService
+-wmMiddleRPCService:WmMiddleRPCService
++fetchInfo(HyTradeInfoReq):HyTradeResult<HyTradeInfoVO>
++submitOrder(HyTradeSubmitReq):HyTradeResult<HyTradeSubmitVO>
++pushOrder(HyTradeSubmitReq):HyTradeResult<HyTradeSubmitVO>
++renderInfo(HyTradeInfoReq):HyTradeResult<HyTradeRenderVO>
+}
+
+class HyTradeInfoService{
+-applicationContext:ApplicationContext
+-ecs:HyTradeEcsService
+-hyTradeConfigService:HyTradeConfigService
++fetchInfo(HyTradeInfoReq,ProgeressData):HyTradeInfo
+}
+
+class HyTradeRenderService{
+~hyTradeInfoService:HyTradeInfoService
++renderInfo(HyTradeInfoReq):HyTradeRenderVO
+}
+
+class HyTradeSubmitService{
+~hyTradeInfoService:HyTradeInfoService
++submitOrder(HyTradeSubmitReq):HyTradeSubmitVO
++pushOrder(HyTradeSubmitReq):HyTradeSubmitVO
+}
+
+
+HyTradeInfoService <.. HyTradeClientImpl
+HyTradeRenderService <.. HyTradeClientImpl
+HyTradeSubmitService <.. HyTradeClientImpl
+
+HyTradeOfflineClient <|.... HyTradeClientImpl
+HyTradeOfflineClient <-[hidden]- HyTradeClientImpl
+HyTradeOfflineClient <-[hidden]- HyTradeInfoService
+
+
+
+
+
+
+
+@enduml

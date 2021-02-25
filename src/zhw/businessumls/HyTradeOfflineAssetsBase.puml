@@ -1,0 +1,56 @@
+@startuml
+(*)  --> "参数校验"
+note right
+入参校验
+前置模块数据校验
+end note
+--> "获取虚拟资产配置"
+note right
+余额开关
+余额是否自动选中
+虚拟卡开关
+提货券开关
+随机立减开关
+调支付查询资产总开关
+end note
+If "调支付查询资产开关关闭" then
+--> [Yes] "return"
+else
+--> "progeressData 获取自定义参数配置"
+note right
+是否使用积分
+是否使用多点卡
+是否使用余额
+是否使用商家虚拟卡
+是否使用提货券
+是否使用随机立减
+end note
+--> "组装支付系统请求参数"
+note right
+GwPayContext
+GwAllAssetQueryRequest
+end note
+--> "开始查询虚拟资产信息"
+note right
+接口：com.dmall.pay.gateway.api.PayGatewayTradeFacade
+方法：queryUserAllAsset
+end note
+If "请求成功" then
+--> [Yes] "得到支付明细信息"
+--> "对支付明细进行处理\n 写入tradeInfo.wares"
+note right
+转换为结算的bean返回
+（1）积分处理
+（2）多点卡处理
+（3）余额处理、余额优惠处理
+（4）虚拟卡、虚拟卡优惠处理
+（5）限品券处理（浪费、非浪费使用；选中、未选中）
+（6）随机立减
+（7）余额优惠、卡优惠、随机立减分摊信息等处理
+end note
+-->(*)
+else
+-left-> "HyTradeException"
+Endif
+Endif
+@enduml

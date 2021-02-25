@@ -1,0 +1,28 @@
+@startuml
+title:HyTradeWaresDposComponent
+(*)  --> "组装购物车请求参数"
+--> "开始请求购物车获取商品信息"
+note right
+接口：DposCartDubboOfflineService
+方法：execute
+end note
+If "result is null" then
+--> [Yes] "HyTradeException \n dubbo null err"
+else
+If "result.code != 0000" then
+--> [Yes] "得到result.errData"
+If "errData not null \n && errData instanceof DposFailureCart" then
+--> [Yes] "对errData进行处理"
+--> "HyTradeException \n 将失败商品返回"
+else
+Endif
+else
+--> "return result.getData()"
+--> "获得dposStore信息"
+--> "获取商品信息、促销信息等"
+--> "对购物车返回的商品信息按需处理\n转换为结算页面展示的商品信息"
+--> "返回给前端进行展示"
+Endif
+Endif
+-->(*)
+@enduml

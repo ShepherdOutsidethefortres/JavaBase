@@ -1,0 +1,54 @@
+@startuml
+title:HyTradePriceBaseComponent
+start
+:获取商品金额信息;
+:获取配置信息;
+:获取配送方式、支付方式信息;
+if (商品金额信息null) then (yes)
+:      HyTradeException \n（0001：商品金额不正确）;
+stop
+else (no)
+:获取商品原价信息及用于展示的信息;
+if (原价信息 null or < 0 \n 展示信息 null or <0) then (yes)
+:      HyTradeException \n（0007：订单商品总金额不正确）;
+stop
+else (no)
+:计算订单应付金额;
+note right
+HyTradePrice # calculateOrderPrice
+end note
+if (订单应付金额null || <0) then (yes)
+:      HyTradeException \n（0008：订单应付金额不正确）;
+stop
+else (no)
+:获取商品信息;
+if (商品信息null) then (yes)
+:      HyTradeException \n（0009：商品行数据不正确）;
+stop
+else (no)
+if (商品价格null) then (yes)
+:      HyTradeException \n（0001：商品金额不正确）;
+stop
+else (no)
+if (商品数量null) then (yes)
+:      HyTradeException \n（0002：商品数量不正确）;
+stop
+else (no)
+:progressData获取是否检验成单金额配置;
+if (校验成单金额) then (yes)
+:将成单金额信息组装进tradeInfo里;
+else (no)
+endif
+:progressData获取是否校验提货券前的应付金额;
+if (是) then (yes)
+:计算使用提货券前的应付金额;
+if (req中金额信息和计算的不一致) then (yes)
+:HyTradeException\n(提货券使用前的应付金额发生变化);
+stop
+else (no)
+endif
+else (no)
+endif
+:return;
+stop
+@enduml

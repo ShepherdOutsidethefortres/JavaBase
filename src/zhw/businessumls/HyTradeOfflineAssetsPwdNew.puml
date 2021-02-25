@@ -1,0 +1,106 @@
+@startuml
+title:HyTradeAssetsPwdNewComponent
+(*)  --> "入参校验"
+note right
+venderStore
+price
+store
+vender
+end note
+--> "获取余额、积分、提货券、虚拟卡抵扣金额信息"
+--> "amount=余额+提货券+虚拟卡抵扣金额"
+--> "progressData获取结算免密金额时,是否需要计算积分配置"
+If "true" then
+--> [Yes] "amount+=积分抵扣金额"
+--> "progressData获取是否需要校验免密配置" as checkFreepay
+If "需要校验免密" then
+[Yes] If "amount>0" then
+--> [Yes] "构造免密请求参数"
+note left
+GwPayContext
+GwFreePasswordQueryRequest
+end note
+--> "查询支付系统获取免密信息"
+note left
+接口：PayGatewayTradeFacade
+方法：hasFreePasswordForTrade
+end note
+If "获取成功" then
+--> [Yes] "设置assetsPwd信息  " as success
+note left
+虚拟财产是否免密：true
+虚拟财产免密限额：0
+设备号是否变更：false
+虚拟资产是否超过免密限额：false
+end note
+If "提交流程 && amount>0 虚拟资产不免密 && 密码为空" then
+-left-> [Yes] "HyTradeException \n 非免密时未输入密码"
+else
+--> "获取用户是否有支付密码"
+note left
+接口：UserAccountFacade
+方法：isExist
+end note
+If "code 0" then
+--> [Yes] "用户没有设置支付密码"
+If "获取免密信息时失败且报错信息为空" then
+-left-> [Yes] "重新设置报错信息"
+note left
+您在使用新的设备进行xxx免密支付，
+需要先设置支付密码以完成身份验证
+end note
+else
+If "非免密支付、设备没变、没超限额、获取免密信息时无报错信息" then
+--> [Yes] "报错提示：为保障您的虚拟资产安全，\n请您输入多点支付密码"
+--> "获取用户密码冻结情况" as passFreeze
+note left
+接口：UserAccountFacade
+方法：isFreezing
+end note
+If "code 5006" then
+--> "被冻结"
+note left
+虚拟财产是否免密：false
+end note
+--> "可用余额、可用积分、可用虚拟卡额度、提货券抵扣均为0" as stepFinal
+note left
+assetsPwd.setAutoSubmit(true);
+end note
+--> "return assetsPwd"
+--> (*)
+else
+--> stepFinal
+Endif
+else
+--> [No] passFreeze
+Endif
+Endif
+else
+-left-> [No] "日志打印：用户尚未设置支付密码"
+Endif
+Endif
+else
+-left-> [No] "打印失败原因"
+Endif
+else
+-left-> "设置assetsPwd信息 "
+note left
+虚拟财产是否免密：true
+虚拟财产免密限额：0
+设备号是否变更：false
+虚拟资产是否超过免密限额：false
+end note
+Endif
+else
+-left-> "设置assetsPwd信息"
+note left
+虚拟财产是否免密：false
+虚拟财产免密限额：0
+设备号是否变更：false
+虚拟资产是否超过免密限额：false
+end note
+Endif
+else
+Endif
+--> [No] checkFreepay
+@enduml

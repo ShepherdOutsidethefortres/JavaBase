@@ -1,0 +1,70 @@
+@startuml
+abstract class CarModel{
+-sequence:ArrayList<String>
+#{abstract}start():void
+#{abstract}stop():void
+#{abstract}alarm():void
+#{abstract}engineBoom():void
++run():void
++setSequence(ArrayList<String>):void
+}
+
+class BenzModel{
+#start():void
+#stop():void
+#alarm():void
+#engineBoom():void
+}
+
+class BMWModel{
+#start():void
+#stop():void
+#alarm():void
+#engineBoom():void
+}
+
+CarModel <|-- BenzModel
+CarModel <|-- BMWModel
+
+class Client{
++{static}main(String[]):void
+}
+
+
+abstract class CarBuilder{
++{abstract}setSequence(ArrayList<String>):void
++{abstract}getCarModel():CarModel
+}
+
+class BenzBuilder{
+-benz:BenzModel
++setSequence(ArrayList<String>):void
++getCarModel():CarModel
+}
+
+class BMWBuilder{
+-bmw:BMWModel
++setSequence(ArrayList<String>):void
++getCarModel():CarModel
+}
+
+CarBuilder<|--BenzBuilder
+CarBuilder<|--BMWBuilder
+CarModel<..CarBuilder
+
+class Director{
+-sequence:ArrayList<String>
+-benzBuilder:BenzBuilder
+-bmwBuilder:BMWBuilder
++getABenzModel():BenzModel
++getBBenzModel():BenzModel
++getCBMWModel():BMWModel
++getDBMWModel():BMWModel
+}
+
+BenzBuilder *-- Director
+BMWBuilder *-- Director
+Director <.. Client
+
+
+@enduml

@@ -1,0 +1,112 @@
+@startuml
+interface Human{
++laugh() : void
++cry() : void
++talk() : void
++sex() : void
+}
+
+abstract class AbstractYellowHuman{
++laugh() : void
++cry() : void
++talk() : void
+}
+
+abstract class AbstractBlackHuman{
++laugh() : void
++cry() : void
++talk() : void
+}
+
+abstract class AbstractWhiteHuman{
++laugh() : void
++cry() : void
++talk() : void
+}
+
+Human <|.. AbstractYellowHuman
+Human <|.. AbstractBlackHuman
+Human <|.. AbstractWhiteHuman
+
+class YellowFemaleHuman{
++sex() : void
+}
+
+class YellowMaleHuman{
++sex() : void
+}
+
+class WhiteFemaleHuman{
++sex() : void
+}
+
+class WhiteMaleHuman{
++sex() : void
+}
+
+class BlackFemaleHuman{
++sex() : void
+}
+
+class BlackMaleHuman{
++sex() : void
+}
+
+AbstractYellowHuman <|-- YellowFemaleHuman
+AbstractYellowHuman <|-- YellowMaleHuman
+AbstractWhiteHuman <|-- WhiteFemaleHuman
+AbstractWhiteHuman <|-- WhiteMaleHuman
+AbstractBlackHuman <|-- BlackFemaleHuman
+AbstractBlackHuman <|-- BlackMaleHuman
+
+enum HumanEnum{
+YelloMaleHuman
+YelloFemaleHuman
+WhiteFemaleHuman
+WhiteMaleHuman
+BlackFemaleHuman
+BlackMaleHuman
+- value : String
+- HumanEnum(String)
++ getValue() : String
+}
+
+interface HumanFactory{
++createYellowHuman():Human
++createWhiteHuman():Human
++createBlackHuman():Human
+}
+
+abstract class AbstractHumanFactory{
+#+createHuman(HumanEnum):Human
+}
+
+class MaleHumanFactory{
++createBlackHuman():Human
++createWhiteHuman():Human
++createYellowHuman():Human
+}
+
+class FemaleHumanFactory{
++createBlackHuman():Human
++createWhiteHuman():Human
++createYellowHuman():Human
+}
+
+HumanFactory <|.. AbstractHumanFactory
+AbstractHumanFactory <|-- MaleHumanFactory
+AbstractHumanFactory <|-- FemaleHumanFactory
+AbstractHumanFactory ..> HumanEnum
+HumanEnum <-[hidden]- AbstractHumanFactory
+HumanFactory -[hidden]> Human
+HumanFactory ..> Human
+
+class NvWa{
++main():void
+}
+
+MaleHumanFactory <.. NvWa
+FemaleHumanFactory <.. NvWa
+
+
+@enduml

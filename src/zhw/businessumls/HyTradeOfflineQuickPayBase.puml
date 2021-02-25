@@ -1,0 +1,25 @@
+@startuml
+title:HyTradeQuickPayBaseComponent
+start
+:progressData获取自定义参数：checkFreePay;
+if (checkFreePay false?) then (yes)
+:设置秒付参数;
+:return;
+stop
+else (no)
+:构建秒付请求参数;
+:查询秒付结果;
+note right
+接口：IPayGatewayApi
+方法：getBalance4SelfBuy
+end note
+if (查询成功?) then (yes)
+:获得秒付查询结果;
+:获得秒付金额;
+:根据秒付金额设置自由购结算支付方式;
+:返回秒付处理结果;
+stop
+else (no)
+:HyTradeException;
+stop
+@enduml

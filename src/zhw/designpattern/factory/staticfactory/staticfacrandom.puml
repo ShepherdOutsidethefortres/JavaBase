@@ -1,0 +1,49 @@
+@startuml
+
+interface Human{
++laugh() : void
++cry() : void
++talk() : void
+}
+
+class YellowHuman {
++laugh() : void
++cry() : void
++talk() : void
+}
+
+class WhiteHuman {
++laugh() : void
++cry() : void
++talk() : void
+}
+
+class BlackHuman {
++laugh() : void
++cry() : void
++talk() : void
+}
+
+class HumanFactory{
++{static} createHuman(Class) : Human
++{static} createHuman() : Human
+}
+
+class ClassUtils{
++{static} getAllClassByInterface(Class) : List<Class>
+}
+
+class NvWa{
++main() : void
+}
+
+Human <|.. YellowHuman
+Human <|.. WhiteHuman
+Human <|.. BlackHuman
+
+HumanFactory ..> Human
+HumanFactory ..> ClassUtils
+NvWa ..> HumanFactory
+
+
+@enduml

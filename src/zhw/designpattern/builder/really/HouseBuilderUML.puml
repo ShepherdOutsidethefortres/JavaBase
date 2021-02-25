@@ -1,0 +1,47 @@
+@startuml
+
+class House{
+-baise:String
+-wall:String
+-roofed:String
++get()/set()
+}
+
+abstract class HouseBuilder{
+# house : House
+# buildBasic() : void
+# buildWalls() : void
+# roofed() : void
++ buidHouse() : House
+}
+
+class CommonHouse{
++ buildBasic() : void
++ buildWalls() : void
++ roofed() : void
+}
+
+class HighBuilding{
++ buildBasic() : void
++ buildWalls() : void
++ roofed() : void
+}
+
+class HouseDirector{
+-houseBuilder:HouseBuilder
++HouseDirector(HouseBuilder)
++setHouseBuilder(HouseBuilder):void
++<color red><b>concreteHouse():House
+}
+
+class Client{}
+
+left to right direction
+HouseBuilder <|-- CommonHouse
+HouseBuilder <|-- HighBuilding
+HouseBuilder *-- House
+HouseBuilder <-[hidden] House
+HouseDirector o-- HouseBuilder
+Client ..> HouseDirector
+
+@enduml

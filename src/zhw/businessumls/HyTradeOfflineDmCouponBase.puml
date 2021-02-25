@@ -1,0 +1,113 @@
+@startuml
+title:HyTradeCouponDmOfflineOsBaseComponent
+(*)  --> "progeressData获取onlySubmit参数"
+If "onlySubmit true" then
+--> [Yes] "return"
+else
+--> "开始获取优惠券信息"
+--> "入参校验"
+--> "获取交易配置中心虚拟资产开关&优惠券开关"
+--> "入参DmCoupon.isCanUseCoupon判断是否使用优惠券"
+If "不能使用优惠券" then
+--> [Yes] "return "
+else
+--> "progressData获取自定义配置"
+note right
+（1）是否使用前端选券的模式
+（2）提交订单时,是否需要先挂券
+（3）是否可以叠加使用优惠券
+（4）是否创建不可用优惠券列表
+end note
+
+If "hyTradeWares is null" then
+-left-> [Yes] "HyTradeException \n 0001 构建优惠券请求参数时,数据不正确"
+else
+If "hyWarePriceVOs is null" then
+-left-> [Yes] " HyTradeException \n 0001 构建优惠券请求参数时,数据不正确"
+else
+If "groupWarePriceVOList is empty" then
+-left-> [Yes] "HyTradeException \n 0001 构建优惠券请求参数时,数据不正确 "
+else
+--> "开始组装优惠券系统请求参数"
+note right
+systemCode
+smartDeviceType
+wareReqVOList
+等等
+end note
+If "isSubmit" then
+[Yes] If "提交订单挂券" then
+--> [Yes] "请求优惠券系统挂券"
+note right
+接口：IOSCouponApi
+方法：offlineHangUp
+end note
+If "挂券成功" then
+--> [Yes] "返回挂券信息"
+--> "请求优惠券系统算价"
+note right
+接口：IOSCouponApi
+方法：offlineCalculate
+end note
+If "算价成功" then
+--> [Yes] "提交订单——返回优惠券算价信息"
+--> "进行优惠券信息转换" as couponTrans
+else
+-left-> [No] "HyTradeException "
+Endif
+else
+--> "HyTradeException"
+Endif
+else
+Endif
+
+else
+--> [No] "判断用户是否选券"
+If "用户选了优惠券" then
+--> [Yes] "挂券标识false"
+--> "非提交订单——请求优惠券系统挂券" as infoHangUp
+note right
+接口：com.dmall.coupon.daemon.hessian.api.IOSCouponApi
+方法：offlineHangUp
+end note
+If "挂券成功" then
+--> [Yes] "非提交订单——返回挂券信息"
+--> couponTrans
+note right
+可用优惠券列表
+不可用优惠券列表
+浪费使用标识
+优惠额度等等
+end note
+--> "处理商家优惠券信息"
+note right
+couponCode
+actualValue
+checked
+venderCouponTitle
+amount等等信息
+end note
+--> "处理优惠券分摊信息"
+note right
+承担方信息
+券价值
+是否计入收入
+end note
+--> "return   "
+-->(*)
+else
+-right-> [No] "HyTradeException   "
+Endif
+else
+--> "挂券标识true"
+--> infoHangUp
+Endif
+Endif
+Endif
+Endif
+Endif
+
+Endif
+Endif
+
+@enduml
