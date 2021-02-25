@@ -1,0 +1,43 @@
+@startuml
+
+interface Aggregate{
++add(Object obj):void
++remove(Object obj):void
++getIterator():Iterator
+}
+
+interface Iterator{
++first():Object
++next():Object
++hasNext():boolean
+}
+
+class ConcreteAggregate{
+-list:List<Object>
++add(Object obj):void
++remove(Object obj):void
++getIterator():Iterator
+}
+
+note left
+具体聚合类
+end note
+
+class ConcreteIterator{
+-list:List<Object>
++ConcreteIterator(List<Object> list)
++first():Object
++next():Object
++hasNext():boolean
+}
+
+note right
+具体迭代器
+end note
+
+Aggregate <|.. ConcreteAggregate
+Iterator <|.. ConcreteIterator
+
+ConcreteAggregate <-left- ConcreteIterator
+
+@enduml
